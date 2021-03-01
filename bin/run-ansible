@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ "$(whoami)" != root ]; then
+    echo must be run as root
+    exit 1
+fi
+
+SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
+ansible-playbook "$SCRIPTPATH/../local.yml"

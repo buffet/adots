@@ -1,0 +1,11 @@
+- hosts: localhost
+  become: true
+  pre_tasks:
+    - name: Update distro (openSUSE Tumbleweed)
+      community.general.zypper:
+        name: '*'
+        state: dist-upgrade
+      when: ansible_distribution == 'openSUSE Tumbleweed'
+
+  tasks:
+    - include: tasks/packages.yml

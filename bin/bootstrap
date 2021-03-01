@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ "$(whoami)" != root ]; then
+    echo must be run as root
+    exit 1
+fi
+
+SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
+zypper install ansible --no-confirm
+ansible-galaxy collection install community.general
+"$SCRIPTPATH/run-ansible"
